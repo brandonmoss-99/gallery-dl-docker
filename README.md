@@ -1,2 +1,4 @@
 # gallery-dl-docker
-gallery-dl, in Docker
+[![License](https://img.shields.io/github/license/brandonmoss-99/gallery-dl-docker?logo=github)](https://github.com/brandonmoss-99/gallery-dl-docker/blob/main/LICENSE) [![Docker image pulls](https://img.shields.io/docker/pulls/brandonmoss99/gallery-dl?logo=docker)](https://hub.docker.com/r/brandonmoss99/gallery-dl) [![Docker image size](https://img.shields.io/docker/image-size/brandonmoss99/gallery-dl?logo=docker)](https://hub.docker.com/r/brandonmoss99/gallery-dl)
+
+A base for [gallery-dl](https://github.com/mikf/gallery-dl), in Docker. This simply provides enough to create a container which runs the `gallery-dl` command, without any arguments, and nothing more.
