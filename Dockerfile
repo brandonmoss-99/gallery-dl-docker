@@ -1,4 +1,4 @@
-FROM python:3.11.3-slim-buster
+FROM python:3.11.4-slim-buster
 
 LABEL org.opencontainers.image.source=https://github.com/brandonmoss-99/gallery-dl-docker
 LABEL org.opencontainers.image.description="gallery-dl, in Docker"
