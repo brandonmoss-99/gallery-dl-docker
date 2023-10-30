@@ -32,4 +32,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/gallery-dl:${{ env.VERSION }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/gallery-dl:${{ env.VERSION }},${{ secrets.DOCKERHUB_USERNAME }}/gallery-dl:latest
