@@ -12,6 +12,9 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
+      - name: Get gallery-dl version number
+        run: |
+          echo "VERSION=$(grep 'gallery-dl==' requirements.txt | cut -d '=' -f 3)" >> $GITHUB_ENV
       -
         name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -29,4 +32,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/gallery-dl:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/gallery-dl:${{ env.VERSION }}
