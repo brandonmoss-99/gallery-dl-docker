@@ -11,7 +11,7 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       - name: Get gallery-dl version number
         run: |
           echo "VERSION=$(grep 'gallery-dl==' requirements.txt | cut -d '=' -f 3)" >> $GITHUB_ENV
