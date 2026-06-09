@@ -1,0 +1,43 @@
+name: Dependabot Auto Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    # Only run if dependabot created the PR
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          # Built-in secret, don't need to define anything new in the repo's secrets
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      
+      # Approve PRs for patch and minor version updates
+      - name: Approve PR
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Auto merge PRs for patch and minor version updates
+      - name: Enable auto-merge for Dependabot PRs
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          # Built-in secret, don't need to define anything new in the repo's secrets
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
