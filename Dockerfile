@@ -1,4 +1,4 @@
-FROM python:3.15.1-slim-bookworm
+FROM python:3.15.2-slim-bookworm
 
 LABEL org.opencontainers.image.source=https://github.com/brandonmoss-99/gallery-dl-docker
 LABEL org.opencontainers.image.description="gallery-dl, in Docker"
